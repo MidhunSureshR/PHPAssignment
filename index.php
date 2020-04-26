@@ -23,8 +23,8 @@
     <section>
         <?php          
             $db = new TaskDatabase();             
-            $db->addTask('"Write code for task list."');
         ?>    
+       
     </section>
     
     
