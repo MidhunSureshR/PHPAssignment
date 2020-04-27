@@ -53,12 +53,10 @@
          *
          * @param string $queryString The MYSQL commands to be executed on database.
          * @return bool TRUE if successful , FALSE otherwise.
+         * @return mysqli_result If operation is SELECT or similar
          */
         protected function runQuery($queryString){
-            if($this->mysqli->query($queryString) == TRUE){
-                return TRUE;
-            }
-            return FALSE;
+            return $this->mysqli->query($queryString);
         }
 
     }

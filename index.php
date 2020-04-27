@@ -23,8 +23,11 @@
     <section>
         <?php          
             $db = new TaskDatabase();             
+            $db->getTasks();
         ?>    
-       
+        <br>
+        <input type="text" value="Enter task data here" name="task_data">
+        <input type="button" value="Add">
     </section>
     
     
