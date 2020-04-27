@@ -1,5 +1,5 @@
 <?php 
-    require('php/DatabaseHandle.php');
+    //require('php/DatabaseHandle.php');
 
     class TaskDatabase extends DatabaseHandle{
 
@@ -37,7 +37,6 @@
             else{
                 echo nl2br("Error in fetching tasks from database.\n");
             }
-           
         }
 
     }

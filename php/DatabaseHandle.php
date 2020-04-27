@@ -59,5 +59,16 @@
             return $this->mysqli->query($queryString);
         }
 
+        public function safeExit(){
+           
+            if($this->mysqli->close()){
+                echo "mysqli object deallocated successful.";
+            }
+            else{
+                echo "Error in deallocation of mysqli object.";
+            }
+            
+        }
+
     }
 ?>
