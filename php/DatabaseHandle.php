@@ -16,11 +16,13 @@
         private function connectToMYSQLServer(){
             $this->mysqli = new mysqli("localhost", "root", $this->password);
             if ($this->mysqli->connect_errno) {
-                echo "Failed to connect to MySQL: " . $this->mysqli->connect_error . nl2br("\n");
+                //echo "Failed to connect to MySQL: " . $this->mysqli->connect_error . nl2br("\n");
+                addLog("Failed to connect to MySQL");
                 return FALSE;
             }
             else{
-                echo nl2br("Connection to MYSQL server successfull.\n");
+                //echo nl2br("Connection to MYSQL server successfull.\n");
+                addLog("Connection to MYSQL server successfull.");
                 return TRUE;
             }
         }
@@ -28,10 +30,12 @@
         private function createDatabase(){
             $create_db_command = "CREATE DATABASE IF NOT EXISTS `taskdb` DEFAULT CHARACTER SET utf8 COLLATE utf8_general_ci";
             if($this->runQuery($create_db_command)){
-                echo nl2br("Created Database taskdb.\n");
+                //echo nl2br("Created Database taskdb.\n");
+                addLog("Created Database taskdb.\n");
             }
             else{
-                echo "ERROR : ".$this->mysqli->error . nl2br("\n");
+                //echo "ERROR : ".$this->mysqli->error . nl2br("\n");
+                addLog("Error in creating database.");
                 return;
             }
         }
@@ -43,9 +47,13 @@
         private function createTable(){
             $create_table_command = "CREATE TABLE IF NOT EXISTS task_list(content VARCHAR(100) NOT NULL,done BIT(1) DEFAULT 0 NOT NULL  )";
             if($this->runQuery($create_table_command)){
-                echo nl2br("Table created successfully.\n");
+                //echo nl2br("Table created successfully.\n");
+                addLog("Table created successfully.");
             }
-            else echo nl2br("Error[ TABLE CREATION ] :" . mysqli_error($this->mysqli) . nl2br("\n"));
+            else { 
+            //echo nl2br("Error[ TABLE CREATION ] :" . mysqli_error($this->mysqli) . nl2br("\n"));
+                addLog("Error creating table.");
+            }
         }
 
         /**
@@ -62,10 +70,12 @@
         public function safeExit(){
            
             if($this->mysqli->close()){
-                echo "mysqli object deallocated successful.";
+                //echo "mysqli object deallocated successful.";
+                addLog("mysqli object deallocated successful.");
             }
             else{
-                echo "Error in deallocation of mysqli object.";
+                //echo "Error in deallocation of mysqli object.";
+                addLog("Error in deallocation of mysqli object.");
             }
             
         }

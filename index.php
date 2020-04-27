@@ -10,7 +10,8 @@
     <?php 
         require 'php/DatabaseHandle.php';
         require 'php/TaskDatabase.php';
-        $db = new TaskDatabase();  
+        require 'php/LogPrinter.php';
+  
     ?> 
 
     <!-- Base stylesheet -->
@@ -18,7 +19,10 @@
 
     <!-- Import FetchWrapper for POST -->
     <script src="js/FetchWrapper.js"></script>
-    
+
+    <!-- Log / Debug Capability -->
+    <script src="js/Logger.js"></script>
+
     <script type="text/javascript"> 
         function handleAddTask(){
             const data = document.querySelector("#task_data").value;
@@ -28,29 +32,28 @@
             sendURLEncodedData(payload,"php/CommunicateHandle.php");
             document.querySelector("#output").innerHTML += data;
         }
-
-
-
-
-
     </script>
 
 
 </head>
 <body>
-
+    
     <header class="align-center">
         <h1>Simple List Maker</h1>
         <h2>Submitted by Nihal Narayan, Antony Chirayil, Pranav S. Warrier, R Midhun Suresh</h2>
         <h3><a href="https://github.com/MidhunSureshR/PHPAssignment">Github</a></h3>
     </header>
+    
+    <!--Log output goes here -->
+    <div id="log-box"> </div> 
 
     <section id="output">
-        <?php          
-                      
+        <?php      
+            setLogContainer("log-box");     
+            $db = new TaskDatabase();           
             $db -> getTasks();
             $db -> safeExit();
-
+         
         ?>    
         <br>
      
@@ -67,7 +70,8 @@
         <li>Uses the modern fetch API to perform commuication with PHP-backend instead of old ajax calls</li>
     </ul> -->
    </section>
-    
-    
+ 
+   
+   
 </body>
 </html>

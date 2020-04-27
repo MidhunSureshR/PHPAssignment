@@ -8,34 +8,32 @@
             if($insert_command = $this->mysqli->prepare("insert into `task_list` values(?,0)")){
                 $insert_command->bind_param("s",$taskText);
                 if($insert_command->execute()){
-                    echo nl2br("Task added to table successfully.\n");
+                    //echo nl2br("Task added to table successfully.\n");
+                    addLog("Task added to table successfully.");
                 }
                 else{
-                    echo "ERROR [ Adding task ] : " . $this->mysqli->error . nl2br("\n") ;
+                    //echo "ERROR [ Adding task ] : " . $this->mysqli->error . nl2br("\n") ;
+                    addLog("Error adding Task");
                 }
             }
-           /*  echo nl2br("\nInsert command generated is:\n") . $insert_command . nl2br("\n");
-            if($this->runQuery($insert_command)){
-                
-            }
-            else{
-                echo "ERROR [ Adding task ] : " . $this->mysqli->error . nl2br("\n") ;
-            } */
         }
 
         public function getTasks(){
-            echo nl2br("\n\nTrying to fetch tasks from database...\n");
+            //echo nl2br("\n\nTrying to fetch tasks from database...\n");
+            addLog("Trying to fetch tasks from database...");
             $get_command = 'SELECT * FROM `task_list`';
-            echo nl2br("Select command generated is:\n") . $get_command . nl2br("\n");
+            //echo nl2br("Select command generated is:\n") . $get_command . nl2br("\n");
             if($result = $this->runQuery($get_command)){
-                echo nl2br("Fetched data successfully.\n\n");
+                //echo nl2br("Fetched data successfully.\n\n");
+                addLog("Fetched data successfully.");
                 while($row = $result->fetch_row() ){
                     echo $row[0] . "   " . $row[1] . nl2br("\n");
                 }
               
             }
             else{
-                echo nl2br("Error in fetching tasks from database.\n");
+                //echo nl2br("Error in fetching tasks from database.\n");
+                addLog("Error in fetching tasks from database.");
             }
         }
 
