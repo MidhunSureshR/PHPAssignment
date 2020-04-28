@@ -30,7 +30,16 @@
             let payload = new URLSearchParams();
             payload.set("task_data",data); 
             sendURLEncodedData(payload,"php/CommunicateHandle.php");
-            document.querySelector("#output").innerHTML += data;
+            // Bad code allows for html injection
+            //document.querySelector("#output").innerHTML += data; 
+            //Better way to do it:
+            addListEntry(data);
+        }
+
+        function addListEntry(data){
+            let newElement = document.createElement("p");
+            newElement.textContent = data;
+            document.getElementById("output").appendChild(newElement);
         }
     </script>
 
@@ -54,14 +63,14 @@
             $db -> getTasks();
             $db -> safeExit();
          
-        ?>    
-        <br>
-     
-        <input id="task_data" type="text" value="Enter task data here" name="task_data">
-        <input type="button" value="Add" onclick="handleAddTask()">
-     
+        ?>      
     </section>
 
+    <section>
+        <input id="task_data" type="text" value="Enter task data here" name="task_data">
+        <input type="button" value="Add" onclick="handleAddTask()">
+    </section>    
+    
    <section>
  <!--   <h3>Features</h3>
     <ul>

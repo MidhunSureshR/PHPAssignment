@@ -1,8 +1,9 @@
 <?php
-// We are using mysqli with object-oriented interface to communicate with our mysql server
+
     class DatabaseHandle{
         private $password = '@EJ2@xmK4mD3';
-        protected $mysqli;
+        // Using object-oriented interface.
+        protected $mysqli; 
 
         function __construct(){
             if($this->connectToMYSQLServer()){
