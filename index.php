@@ -31,17 +31,20 @@
     <!-- Log / Debug Capability -->
     <script src="js/Logger.js"></script>
 
+
+
     <script type="text/javascript"> 
 
         let debugToggle = {status:false};
         let featureToggle = {status:false};
 
         function handleAddTask(){
-            const data = document.querySelector("#task_data").value;
+            const data = document.getElementById("task_data").value;
             let payload = new URLSearchParams();
             payload.set("task_data",data); 
             sendURLEncodedData(payload,"php/CommunicateHandle.php");
             addDOMElement(data,"output","todo-item font-size-20px");
+            document.getElementById("task_data").value = "";
         }
 
         function handleRemoveTask(arg){
@@ -150,5 +153,7 @@
        Developed with <i class="fas fa-heart font-color-red"></i> by <br><br><span class="font-roboto-900">Nihal Narayan</span>, <span class="font-roboto-900">Antony S. Chirayil</span>, <span class="font-roboto-900">Pranav S. Warrier</span>, <span class="font-roboto-900">R Midhun Suresh</span>
    </footer>
 
+    <!-- Keyboard module to detect ENTER Key -->
+    <script src="js/Keyboard.js"></script>
 </body>
 </html>
