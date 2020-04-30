@@ -32,7 +32,7 @@
             $create_db_command = "CREATE DATABASE IF NOT EXISTS `taskdb` DEFAULT CHARACTER SET utf8 COLLATE utf8_general_ci";
             if($this->runQuery($create_db_command)){
                 //echo nl2br("Created Database taskdb.\n");
-                addLog("Created Database taskdb.\n");
+                addLog("Created Database taskdb.");
             }
             else{
                 //echo "ERROR : ".$this->mysqli->error . nl2br("\n");

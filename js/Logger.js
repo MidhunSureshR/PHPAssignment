@@ -1,5 +1,5 @@
 /**
- * Add log messages to container
+ * Javascript functions that adds log-messages to a given div.
  */
 
  let log_container;

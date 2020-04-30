@@ -4,7 +4,7 @@
     class TaskDatabase extends DatabaseHandle{
 
         public function addTask($taskText){
-            $insert_command = 'INSERT INTO `task_list` VALUES(' . $taskText . ',0)';
+            
             if($insert_command = $this->mysqli->prepare("insert into `task_list` values(?,0)")){
                 $insert_command->bind_param("s",$taskText);
                 if($insert_command->execute()){
@@ -26,8 +26,9 @@
             if($result = $this->runQuery($get_command)){
                 //echo nl2br("Fetched data successfully.\n\n");
                 addLog("Fetched data successfully.");
-                while($row = $result->fetch_row() ){
-                    echo $row[0] . "   " . $row[1] . nl2br("\n");
+                while($row = $result->fetch_row() ){ ?>
+                    <script>addDOMElement(<?php echo '"' . $row[0] . '"' ?>,"output","todo-item font-size-20px");</script>
+                <?php
                 }
               
             }
@@ -35,6 +36,15 @@
                 //echo nl2br("Error in fetching tasks from database.\n");
                 addLog("Error in fetching tasks from database.");
             }
+        }
+
+        public function removeTask($taskText){
+
+            if($remove_command = $this->mysqli->prepare("DELETE FROM `task_list` WHERE content like ?")){
+                $remove_command->bind_param("s",$taskText);
+                $remove_command->execute();
+            }
+            
         }
 
     }

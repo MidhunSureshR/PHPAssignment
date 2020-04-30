@@ -11,11 +11,19 @@
         require 'php/DatabaseHandle.php';
         require 'php/TaskDatabase.php';
         require 'php/LogPrinter.php';
-  
     ?> 
+
+    <!-- Google Fonts -->
+    <link href="https://fonts.googleapis.com/css2?family=Roboto:wght@400;500;900&display=swap" rel="stylesheet"> 
+    
+    <!-- Font Awesome 5-->
+    <script src="https://kit.fontawesome.com/d2f3202e13.js" crossorigin="anonymous"></script>
 
     <!-- Base stylesheet -->
     <link rel="stylesheet" href="css/base.css">
+
+    <!--DOM Wrapper-->
+    <script src="js/DOMwrapper.js"></script>
 
     <!-- Import FetchWrapper for POST -->
     <script src="js/FetchWrapper.js"></script>
@@ -24,63 +32,123 @@
     <script src="js/Logger.js"></script>
 
     <script type="text/javascript"> 
+
+        let debugToggle = {status:false};
+        let featureToggle = {status:false};
+
         function handleAddTask(){
             const data = document.querySelector("#task_data").value;
-            console.log("Data = " + data);
             let payload = new URLSearchParams();
             payload.set("task_data",data); 
             sendURLEncodedData(payload,"php/CommunicateHandle.php");
-            // Bad code allows for html injection
-            //document.querySelector("#output").innerHTML += data; 
-            //Better way to do it:
-            addListEntry(data);
+            addDOMElement(data,"output","todo-item font-size-20px");
         }
 
-        function addListEntry(data){
-            let newElement = document.createElement("p");
-            newElement.textContent = data;
-            document.getElementById("output").appendChild(newElement);
+        function handleRemoveTask(arg){
+            const data = arg.target.innerText;
+            let payload = new URLSearchParams();
+            payload.set("remove_data",data);
+            sendURLEncodedData(payload,"php/CommunicateHandle.php");
+            removeDOMElement(data,"output","todo-item");
         }
+
+        function toggleSection(element_id, toggle){
+            const element = document.getElementById(element_id);
+            if(toggle.status){
+                element.style.display = "none";
+                toggle.status = false;
+            }
+            else{
+                element.style.display = "inline-block";
+                toggle.status = true;
+            }
+        }
+
+        function addChildEventListener(base, eventName, selector, handler) {
+            base.addEventListener(eventName, function(event) {
+                let closest = event.target.closest(selector);
+                if (closest && base.contains(closest)) {
+                    // passes the event to the handler and sets `this`
+                    // in the handler as the closest parent matching the
+                    // selector from the target element of the event
+                    handler.call(closest, event);
+                }
+            });
+        }
+        
+        function dostuff(){
+            const base = document.getElementById("output");
+            addChildEventListener(base,"click",".todo-item",handleRemoveTask);
+        }
+
+        window.addEventListener("load",dostuff);
     </script>
 
 
 </head>
-<body>
+<body class="font-roboto-400">
     
     <header class="align-center">
-        <h1>Simple List Maker</h1>
-        <h2>Submitted by Nihal Narayan, Antony Chirayil, Pranav S. Warrier, R Midhun Suresh</h2>
-        <h3><a href="https://github.com/MidhunSureshR/PHPAssignment">Github</a></h3>
+
+        <div class="font-roboto-900 font-size-80px margin-top-50px">Tiny TODO</div>
+
+        <div class="font-size-20px margin-top-20px">Self Hostable todo list written in <span class="font-roboto-900">Javascript</span>, <span class="font-roboto-900">PHP</span>
+         and powered by <span class="font-roboto-900">MYSQL</span></div>
+
+        <h3>
+            <a class="git-button" href="https://github.com/MidhunSureshR/PHPAssignment">Github <i class="fab fa-github"></i></a>
+            <a class="git-button margin-left-10px" onclick="toggleSection('log-box',debugToggle)">Debug <i class="fas fa-code"></i></a>
+            <a class="git-button" onclick="toggleSection('feature-box',featureToggle)">Features <i class="fas fa-box-open"></i></a>
+        </h3>
+
     </header>
     
-    <!--Log output goes here -->
-    <div id="log-box"> </div> 
+    <section class="display-flex space-evenly">
 
-    <section id="output">
-        <?php      
-            setLogContainer("log-box");     
-            $db = new TaskDatabase();           
-            $db -> getTasks();
-            $db -> safeExit();
-         
-        ?>      
+        <!--Log output goes here -->
+        <div id="log-box" class="border-black padding-5px-all display-inline"> 
+            <div class="align-center font-roboto-900 font-size-20px">Debug Log</div>
+        </div> 
+        
+        <!--WEB APP -->
+        <section id="web-app">
+    
+            <section id="output">
+                <?php      
+                    setLogContainer("log-box");     
+                    $db = new TaskDatabase();           
+                    $db -> getTasks();
+                    $db -> safeExit();
+                
+                ?>      
+            </section>
+    
+            <section>
+                <input id="task_data" type="text" placeholder="eg: tame the dragon" name="task_data" class="task_box">
+                <input class="add-button font-roboto-900" type="button" value="+" onclick="handleAddTask()">
+            </section>
+    
+        </section>
+
     </section>
 
-    <section>
-        <input id="task_data" type="text" value="Enter task data here" name="task_data">
-        <input type="button" value="Add" onclick="handleAddTask()">
-    </section>    
-    
-   <section>
- <!--   <h3>Features</h3>
-    <ul>
-        <li>Uses parameterisation in SQL query to prevent SQL-injection attacks.</li>
-        <li>Written in PHP and common JS with no external dependencies [No Bootstrap,JQuery or other CSS frameworks.]</li>  
-        <li>Uses the modern fetch API to perform commuication with PHP-backend instead of old ajax calls</li>
-    </ul> -->
+   <section class="display-flex space-evenly" id="feature-box">
+
+   <div>
+       <h3>FEATURES</h3>
+        <ul>
+            <li>Uses parameterisation in SQL query to prevent SQL-injection attacks.</li>
+            <li>Written in pure PHP and JS with no external dependencies.</li>  
+            <li>Uses the modern fetch API to perform commuication with PHP-backend instead of old ajax calls</li>
+            <li>Uses proper DOM functions to prevent XSS injection.</li>
+        </ul>
+   </div>
+
    </section>
- 
-   
-   
+    
+   <footer class="align-center margin-top-50px">
+       Developed with <i class="fas fa-heart font-color-red"></i> by <br><br><span class="font-roboto-900">Nihal Narayan</span>, <span class="font-roboto-900">Antony S. Chirayil</span>, <span class="font-roboto-900">Pranav S. Warrier</span>, <span class="font-roboto-900">R Midhun Suresh</span>
+   </footer>
+
 </body>
 </html>
