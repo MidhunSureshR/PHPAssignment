@@ -75,6 +75,13 @@
 #log-box{
     order:2;
     display: none;
+    position: absolute;
+    top: 0px;
+    left: 0px;
+    margin:10px 0 0 10px;
+    border-radius: 35px;
+    color:#656565;
+    font-size:10px;
 }
 
 #feature-box{
@@ -92,6 +99,7 @@
 	height: 30px;
     padding: 5px 5px;
     font-size: 15px;
+    margin-top:15px;
 }
 
 
@@ -103,14 +111,13 @@
     padding:8px 10px;
 }
 
-/* .add-button{
-    background: none;
-    border: 3px solid;
-    width: 50px;
-    height: 40px;
-    font-size: 20px;
-    padding: 5px 5px;
-} */
+
+.git-button:hover{
+    background:#6c63ff;
+    color:#fff;
+}
+
+
 
 /* JESUS CHRIST , WTF IS THIS MESS */
 .add-button {
@@ -130,7 +137,7 @@
 }
 
 .add-button:hover{
-    color:#591ab5c4;
+    color:#8b00ff;
     border-color: black;
 }
 
@@ -153,7 +160,18 @@
 }
 
 
+#all-done{
+    width: 450px;
+    height: 450px;
+    display: none;
+    margin:auto;
+}
 
+.log-item::after{
+    content: " \f058";
+    font-family: "FontAwesome";
+    color:green;
+}
 /*Remove <a> tag styling*/
 a{
     text-decoration: none;

@@ -37,14 +37,16 @@
 
         let debugToggle = {status:false};
         let featureToggle = {status:false};
+        let illustrationToggle = {status:false};
 
         function handleAddTask(){
             const data = document.getElementById("task_data").value;
             let payload = new URLSearchParams();
             payload.set("task_data",data); 
             sendURLEncodedData(payload,"php/CommunicateHandle.php");
-            addDOMElement(data,"output","todo-item font-size-20px");
+            addDOMElement(data,"output","todo-item font-size-20px ");
             document.getElementById("task_data").value = "";
+            verifyIllustration();
         }
 
         function handleRemoveTask(arg){
@@ -53,16 +55,20 @@
             payload.set("remove_data",data);
             sendURLEncodedData(payload,"php/CommunicateHandle.php");
             removeDOMElement(data,"output","todo-item");
+            verifyIllustration();
         }
 
-        function toggleSection(element_id, toggle){
+        function toggleSection(element_id, toggle, flex_enabled = false){
             const element = document.getElementById(element_id);
             if(toggle.status){
                 element.style.display = "none";
                 toggle.status = false;
             }
             else{
-                element.style.display = "inline-block";
+                if(flex_enabled)
+                    element.style.display = "flex";
+                else
+                    element.style.display = "inline-block";
                 toggle.status = true;
             }
         }
@@ -71,9 +77,6 @@
             base.addEventListener(eventName, function(event) {
                 let closest = event.target.closest(selector);
                 if (closest && base.contains(closest)) {
-                    // passes the event to the handler and sets `this`
-                    // in the handler as the closest parent matching the
-                    // selector from the target element of the event
                     handler.call(closest, event);
                 }
             });
@@ -84,7 +87,23 @@
             addChildEventListener(base,"click",".todo-item",handleRemoveTask);
         }
 
+        function verifyIllustration(){
+            const element = document.getElementById("output");
+            modifyIllustration(!element.innerText);
+        }
+
+        function modifyIllustration(state){
+            if(state){
+                document.getElementById("all-done").style.display = "flex";
+            }
+            else{
+                document.getElementById("all-done").style.display = "none";
+            }
+        }
+
         window.addEventListener("load",dostuff);
+
+        window.addEventListener("load",verifyIllustration);
     </script>
 
 
@@ -99,9 +118,9 @@
          and powered by <span class="font-roboto-900">MYSQL</span></div>
 
         <h3>
-            <a class="git-button" href="https://github.com/MidhunSureshR/PHPAssignment">Github <i class="fab fa-github"></i></a>
+            <a class="git-button" href="https://github.com/MidhunSureshR/PHPAssignment" target="_blank">Github <i class="fab fa-github"></i></a>
             <a class="git-button margin-left-10px" onclick="toggleSection('log-box',debugToggle)">Debug <i class="fas fa-code"></i></a>
-            <a class="git-button" onclick="toggleSection('feature-box',featureToggle)">Features <i class="fas fa-box-open"></i></a>
+            <a class="git-button margin-left-10px" onclick="toggleSection('feature-box',featureToggle,true)">Features <i class="fas fa-box-open"></i></a>
         </h3>
 
     </header>
@@ -109,8 +128,8 @@
     <section class="display-flex space-evenly">
 
         <!--Log output goes here -->
-        <div id="log-box" class="border-black padding-5px-all display-inline"> 
-            <div class="align-center font-roboto-900 font-size-20px">Debug Log</div>
+        <div id="log-box" class="padding-5px-all display-inline"> 
+            <div class="font-roboto-900">Statz for geekz</div>
         </div> 
         
         <!--WEB APP -->
@@ -118,12 +137,14 @@
     
             <section id="output">
                 <?php      
+
                     setLogContainer("log-box");     
                     $db = new TaskDatabase();           
                     $db -> getTasks();
                     $db -> safeExit();
                 
                 ?>      
+                <img id="all-done" src="img/gameday.svg">
             </section>
     
             <section>
@@ -140,9 +161,9 @@
    <div>
        <h3>FEATURES</h3>
         <ul>
-            <li>Uses parameterisation in SQL query to prevent SQL-injection attacks.</li>
-            <li>Written in pure PHP and JS with no external dependencies.</li>  
-            <li>Uses the modern fetch API to perform commuication with PHP-backend instead of old ajax calls</li>
+            <li>Uses parametrization in SQL query to prevent SQL-injection attacks.</li>
+            <li>Written in pure PHP and JS with no external libraries.</li>  
+            <li>Uses the modern fetch API to perform commuication with PHP-backend instead of old ajax calls.</li>
             <li>Uses proper DOM functions to prevent XSS injection.</li>
         </ul>
    </div>

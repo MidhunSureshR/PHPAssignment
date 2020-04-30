@@ -20,14 +20,14 @@
 
         public function getTasks(){
             //echo nl2br("\n\nTrying to fetch tasks from database...\n");
-            addLog("Trying to fetch tasks from database...");
+            
             $get_command = 'SELECT * FROM `task_list`';
             //echo nl2br("Select command generated is:\n") . $get_command . nl2br("\n");
             if($result = $this->runQuery($get_command)){
                 //echo nl2br("Fetched data successfully.\n\n");
                 addLog("Fetched data successfully.");
                 while($row = $result->fetch_row() ){ ?>
-                    <script>addDOMElement(<?php echo '"' . $row[0] . '"' ?>,"output","todo-item font-size-20px");</script>
+                    <script>addDOMElement(<?php echo '"' . $row[0] . '"' ?>,"output","todo-item font-size-20px ");</script>
                 <?php
                 }
               
@@ -44,7 +44,7 @@
                 $remove_command->bind_param("s",$taskText);
                 $remove_command->execute();
             }
-            
+
         }
 
     }

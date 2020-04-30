@@ -10,5 +10,5 @@
  }
 
  function addLog(log_message){
-    log_container.innerHTML += "<p>" + log_message + "</p>";
+    log_container.innerHTML += "<p class='log-item'>" + log_message + "</p>";
  }    
