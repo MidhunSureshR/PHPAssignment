@@ -1,7 +1,12 @@
-# Tiny TODO 
+# Tiny TODO - PHP Assignment
 Minimal TOOD list written using PHP and Javscript with MYSQL database.
 
 <img src="https://i.imgur.com/80RvLYI.png" height=350 width=250>
+
+## OS Details
+Developed and tested on **Xubuntu 19.10 eoan**. Obtain a copy from [here](https://xubuntu.org/download).
+
+Code is best viewed on [vscode](https://code.visualstudio.com/) with [PHP Intelephense](https://marketplace.visualstudio.com/items?itemName=bmewburn.vscode-intelephense-client) extension.
 
 ## Setup Guide
 ### 1) Install apache on your distro.
@@ -34,6 +39,6 @@ Minimal TOOD list written using PHP and Javscript with MYSQL database.
  **Note**: At this stage you should also configure your MYSQL setup as instructed [here](https://www.configserverfirewall.com/ubuntu-linux/reset-mysql-root-password-ubuntu/). Password to be used can be found in **DatabaseHandle.php** file in php folder.You can replace that password with the password you used when you configured your MYSQL server.
 
  ### 5) Copy this repository to var/www/html folder.
-You must also give all the files adequate permission for the website to be accessible. Use *chmod*.
+You must also give all the files adequate permission for the website to be accessible. Use **chmod**.
    
 
