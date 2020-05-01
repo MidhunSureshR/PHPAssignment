@@ -31,80 +31,8 @@
     <!-- Log / Debug Capability -->
     <script src="js/Logger.js"></script>
 
-
-
-    <script type="text/javascript"> 
-
-        let debugToggle = {status:false};
-        let featureToggle = {status:false};
-        let illustrationToggle = {status:false};
-
-        function handleAddTask(){
-            const data = document.getElementById("task_data").value;
-            let payload = new URLSearchParams();
-            payload.set("task_data",data); 
-            sendURLEncodedData(payload,"php/CommunicateHandle.php");
-            addDOMElement(data,"output","todo-item font-size-20px ");
-            document.getElementById("task_data").value = "";
-            verifyIllustration();
-        }
-
-        function handleRemoveTask(arg){
-            const data = arg.target.innerText;
-            let payload = new URLSearchParams();
-            payload.set("remove_data",data);
-            sendURLEncodedData(payload,"php/CommunicateHandle.php");
-            removeDOMElement(data,"output","todo-item");
-            verifyIllustration();
-        }
-
-        function toggleSection(element_id, toggle, flex_enabled = false){
-            const element = document.getElementById(element_id);
-            if(toggle.status){
-                element.style.display = "none";
-                toggle.status = false;
-            }
-            else{
-                if(flex_enabled)
-                    element.style.display = "flex";
-                else
-                    element.style.display = "inline-block";
-                toggle.status = true;
-            }
-        }
-
-        function addChildEventListener(base, eventName, selector, handler) {
-            base.addEventListener(eventName, function(event) {
-                let closest = event.target.closest(selector);
-                if (closest && base.contains(closest)) {
-                    handler.call(closest, event);
-                }
-            });
-        }
-        
-        function dostuff(){
-            const base = document.getElementById("output");
-            addChildEventListener(base,"click",".todo-item",handleRemoveTask);
-        }
-
-        function verifyIllustration(){
-            const element = document.getElementById("output");
-            modifyIllustration(!element.innerText);
-        }
-
-        function modifyIllustration(state){
-            if(state){
-                document.getElementById("all-done").style.display = "flex";
-            }
-            else{
-                document.getElementById("all-done").style.display = "none";
-            }
-        }
-
-        window.addEventListener("load",dostuff);
-
-        window.addEventListener("load",verifyIllustration);
-    </script>
+    <!--User interface -->
+    <script type="text/javascript" src="js/UserInterface.js"></script>
 
 
 </head>
@@ -118,7 +46,7 @@
          and powered by <span class="font-roboto-900">MYSQL</span></div>
 
         <h3>
-            <a class="git-button" href="https://github.com/MidhunSureshR/PHPAssignment" target="_blank">Github <i class="fab fa-github"></i></a>
+            <a class="git-button" href="https://github.com/MidhunSureshR/TinyTODO" target="_blank">Github <i class="fab fa-github"></i></a>
             <a class="git-button margin-left-10px" onclick="toggleSection('log-box',debugToggle)">Debug <i class="fas fa-code"></i></a>
             <a class="git-button margin-left-10px" onclick="toggleSection('feature-box',featureToggle,true)">Features <i class="fas fa-box-open"></i></a>
         </h3>
