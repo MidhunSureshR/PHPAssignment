@@ -1,7 +1,7 @@
 # Tiny TODO - PHP Assignment
 Minimal TOOD list written using PHP and Javscript with MYSQL database.
 
-<img src="https://i.imgur.com/80RvLYI.png" height=350 width=250>
+<img src="https://i.imgur.com/xixqqbh.png" height=350 width=250>
 
 ## OS Details
 Developed and tested on **Xubuntu 19.10 eoan**. Obtain a copy from [here](https://xubuntu.org/download).
