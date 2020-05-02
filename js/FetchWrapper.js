@@ -1,6 +1,7 @@
-/**
- * A wrapper around fetch API to communicate with out PHP - backend.
- */
+/** 
+  @license MIT
+  @author R Midhun Suresh <rmidhunsuresh@gmail.com>
+*/
 
 
 /**

@@ -1,3 +1,10 @@
+<?php
+/* 
+@license MIT
+@author  R Midhun Suresh <rmidhunsuresh@gmail.com>
+ */
+?>
+
 <?php 
     //require('php/DatabaseHandle.php');
 

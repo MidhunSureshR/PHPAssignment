@@ -1,6 +1,7 @@
-/**
- * Javascript functions that adds log-messages to a given div.
- */
+  /** 
+  @license MIT
+  @author R Midhun Suresh <rmidhunsuresh@gmail.com>
+  */
 
  let log_container;
 

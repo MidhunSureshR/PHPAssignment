@@ -1,11 +1,17 @@
+<?php
+/* 
+@license MIT
+@author  R Midhun Suresh <rmidhunsuresh@gmail.com>
+*/
+?>
+
 <!DOCTYPE html>
 <html lang="en">
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>List Maker</title>
-
-
+    
     <!-- PHP imports -->
     <?php 
         require 'php/DatabaseHandle.php';

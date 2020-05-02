@@ -1,6 +1,8 @@
-/**
- * Javscript function to create DOM elements
- */
+  /** 
+  @license MIT
+  @author R Midhun Suresh <rmidhunsuresh@gmail.com>
+  */
+
 
  /**
   * Creates a new paragraph node with given text and adds it as child to given element. 

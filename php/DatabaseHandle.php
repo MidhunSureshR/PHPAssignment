@@ -1,4 +1,10 @@
 <?php
+/* 
+@license MIT
+@author  R Midhun Suresh <rmidhunsuresh@gmail.com>
+ */
+?>
+<?php
 
     class DatabaseHandle{
         private $password = '@EJ2@xmK4mD3';
