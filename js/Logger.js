@@ -3,7 +3,7 @@
   @author R Midhun Suresh <rmidhunsuresh@gmail.com> 
   @author Nihal Narayan 
   @author Antony S Chirayil 
-  @author Pranav S Warrier
+  @author Pranav S Varrier
   */
 
  let log_container;

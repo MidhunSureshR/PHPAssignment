@@ -3,6 +3,12 @@ Minimal TOOD list written using PHP and Javscript with MYSQL database.
 
 <img src="https://i.imgur.com/xixqqbh.png" height=350 width=250>
 
+## Group Members
+ * **R Midhun Suresh**, Roll 47
+ * **Pranav S Varrier**, Roll 45
+ * **Antony S Chirayil**, Roll 14
+ * **Nihal Narayan**, Roll 43
+
 ## OS Details
 Developed and tested on **Xubuntu 19.10 eoan**. Obtain a copy from [here](https://xubuntu.org/download).
 

@@ -4,7 +4,7 @@
   @author R Midhun Suresh <rmidhunsuresh@gmail.com> 
   @author Nihal Narayan 
   @author Antony S Chirayil 
-  @author Pranav S Warrier
+  @author Pranav S Varrier
 */
 ?>
 
@@ -108,7 +108,7 @@
    </section>
     
    <footer class="align-center margin-top-50px">
-       Developed with <i class="fas fa-heart font-color-red"></i> by <br><br><span class="font-roboto-900">Nihal Narayan</span>, <span class="font-roboto-900">Antony S. Chirayil</span>, <span class="font-roboto-900">Pranav S. Warrier</span>, <span class="font-roboto-900">R Midhun Suresh</span>
+       Developed with <i class="fas fa-heart font-color-red"></i> by <br><br><span class="font-roboto-900">Nihal Narayan</span>, <span class="font-roboto-900">Antony S. Chirayil</span>, <span class="font-roboto-900">Pranav S. Varrier</span>, <span class="font-roboto-900">R Midhun Suresh</span>
    </footer>
 
     <!-- Keyboard module to detect ENTER Key -->
