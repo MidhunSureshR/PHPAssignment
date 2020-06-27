@@ -1,7 +1,7 @@
 # Tiny TODO - PHP Assignment
 Minimal TOOD list written using PHP and Javscript with MYSQL database.
 
-<img src="https://i.imgur.com/xixqqbh.png" height=350 width=250>
+<img src="https://i.imgur.com/xixqqbh.png">
 
 ## Group Members
  * **R Midhun Suresh**, Roll 47
